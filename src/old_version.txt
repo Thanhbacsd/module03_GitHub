@@ -1,0 +1,247 @@
+
+M2 Lecture 7: Passing data using children
+
+------------------------------------------------------------------------
+M2 Lecture 6: Passing object data using props
+Notes for this lecture
+
+The React JS > Docs > DOM-Elements.HTML mentioned in this lecture is obsolete. 
+It occurs around the 2:48 minute mark in the video. 
+The video specifically mentions the URL: https://reactjs.org/docs/dom-elements.html. 
+Links to an external site.The content described in this video has been moved to URL:  
+https://legacy.reactjs.org/docs/dom-elements.html.Links to an external site.
+
+class EmployeeFilter extends React.Component {
+    render() {
+        return (<div>This is a placeholder for the employee filter.</div>)
+    }
+}
+
+class EmployeeTable extends React.Component {
+    render() {
+        const rowStyle = {border: "1px solid silver", padding: 4}
+        return (
+            <table style = {{width: "800px", borderCollapse: "collapse"}}>
+                <thead>
+                    <tr>
+                        <th style={rowStyle}>Name</th>
+                        <th style={rowStyle}>Extension</th>
+                        <th style={rowStyle}>Email</th>
+                        <th style={rowStyle}>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <EmployeeRow rowStyle = {rowStyle}
+                        employee_name="Zak Ruvalcaba" 
+                        employee_ext = {1124}
+                        employee_email="zak@vectacorp.com"
+                        employee_title="Cheif Executive Officer"
+                    />
+                    <EmployeeRow rowStyle = {rowStyle}
+                        employee_name="Sally Smith" 
+                        employee_ext = {1125}
+                        employee_email="sally@vectacorp.com"
+                        employee_title="Director of sale"
+                    />
+                </tbody>
+            </table>
+        )
+    }
+}
+
+class EmployeeRow extends React.Component {
+    render () {
+        const style = this.props.rowStyle
+        return (
+            <tr>
+                <td style={style}>{this.props.employee_name}</td>
+                <td style={style}>{this.props.employee_ext}</td>
+                <td style={style}>{this.props.employee_email}</td>
+                <td style={style}>{this.props.employee_title}</td>
+            </tr>
+        )
+    }
+}
+
+class EmployeeAdd extends React.Component {
+    render() {
+        return (<div>This is a placeholder for a form to add a new employee.</div>)
+    }
+}
+
+
+class EmployeeList extends React.Component {
+    render() {
+        return (
+            <React.Fragment>   
+                <h1>Employee Management Application</h1>
+                <EmployeeFilter />
+                <hr />
+                <EmployeeTable />
+                <hr />
+                <EmployeeAdd />
+            </React.Fragment>
+        )
+
+    }
+}
+
+const contentNode = 
+ReactDOM.render(
+    <EmployeeList />, 
+    document.getElementById('content')
+)
+---------------------------------------------------------------------------
+// Lecture 5: Passing Data Using Props
+class EmployeeFilter extends React.Component {
+    render() {
+        return (<div>This is a placeholder for the employee filter.</div>)
+    }
+}
+
+class EmployeeTable extends React.Component {
+    render() {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Extension</th>
+                        <th>Email</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <EmployeeRow 
+                        employee_name="Zak Ruvalcaba" 
+                        employee_ext = {1124}
+                        employee_email="zak@vectacorp.com"
+                        employee_title="Cheif Executive Officer"
+                    />
+                    <EmployeeRow 
+                        employee_name="Sally Smith" 
+                        employee_ext = {1125}
+                        employee_email="sally@vectacorp.com"
+                        employee_title="Director of sale"
+                    />
+                </tbody>
+            </table>
+        )
+    }
+}
+
+class EmployeeRow extends React.Component {
+    render () {
+        return (
+            <tr>
+                <td>{this.props.employee_name}</td>
+                <td>{this.props.employee_ext}</td>
+                <td>{this.props.employee_email}</td>
+                <td>{this.props.employee_title}</td>
+            </tr>
+        )
+    }
+}
+
+class EmployeeAdd extends React.Component {
+    render() {
+        return (<div>This is a placeholder for a form to add a new employee.</div>)
+    }
+}
+
+
+class EmployeeList extends React.Component {
+    render() {
+        return (
+            <React.Fragment>   
+                <h1>Employee Management Application</h1>
+                <EmployeeFilter />
+                <hr />
+                <EmployeeTable />
+                <hr />
+                <EmployeeAdd />
+            </React.Fragment>
+        )
+
+    }
+}
+
+const contentNode = 
+ReactDOM.render(
+    <EmployeeList />, 
+    document.getElementById('content')
+)
+-----------------------------------------------------------------------------
+// lecture 4:
+class EmployeeFilter extends React.Component {
+    render() {
+        return (<div>This is a placeholder for the employee filter.</div>)
+    }
+}
+
+class EmployeeTable extends React.Component {
+    render() {
+        return (<div>This is a placeholder for the employee table.</div>)
+    }
+}
+
+class EmployeeAdd extends React.Component {
+    render() {
+        return (<div>This is a placeholder for a form to add a new employee.</div>)
+    }
+}
+
+class EmployeeList extends React.Component {
+    render() {
+        return (
+            <React.Fragment>   // or <div>
+                <h1>Employee Management Application</h1>
+                <EmployeeFilter />
+                <hr />
+                <EmployeeTable />
+                <hr />
+                <EmployeeAdd />
+            </React.Fragment>   // or </div>
+        )
+
+    }
+}
+
+ReactDOM.render(
+    <EmployeeList />, 
+    document.getElementById('content')
+)
+--------------------------------------------------------------------
+// class Component
+const contentNode = document.getElementById('content')
+
+class EmployeeList extends React.Component {
+    render() {
+        return (<div>This is a placeholder for the employee list.</div>)
+    }
+}
+
+ReactDOM.render(<EmployeeList />, contentNode)
+
+// function Component
+function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>
+}
+ReactDOM.render(<Welcome name="Zak Ruvalcaba" />, 
+    document.getElementById('content')
+)
+// let sally = 'Sally Smith'
+// let mark = 'Mark Martin'
+// let holly = 'Holly Unlikely'
+// let amol = 'Amol Shookup'
+
+// const element = (
+//     <ul style={{'color':'blue', 'fontSize': '24px'}}>
+//         <li>{sally}</li>
+//         <li>{mark}</li>
+//         <li>{holly}</li>
+//         <li>{amol.toUpperCase()}</li>
+       
+//     </ul>
+// )
+// ReactDOM.render(element, document.getElementById('content'))
